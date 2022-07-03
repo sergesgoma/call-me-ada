@@ -95,8 +95,6 @@ const mainController = {
           text: `${received_message.text}`,
         };
       } else if (received_message.attachments) {
-        // Gets the URL of the message attachment
-        let attachment_url = received_message.attachments[0].payload.url;
         // if the received message has attechments, then send an error message
         response = {
           text: `Je ne sais pas traiter ce type de demande`,
