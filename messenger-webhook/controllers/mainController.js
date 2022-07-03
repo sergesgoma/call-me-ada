@@ -140,7 +140,7 @@ const mainController = {
 
       // Set the response based on the postback payload
       if (payload === "yes") {
-        response = { text: "Génial, je suis heureux de le savoir !" };
+        response = { text: "Génial, je suis heureux de le savoir ! 😀" };
       } else if (payload === "no") {
         response = {
           attachment: {
@@ -149,7 +149,7 @@ const mainController = {
               template_type: "generic",
               elements: [
                 {
-                  text:
+                  subtitle:
                     "Oh non, j'en suis désolé... Voici un meme qui, j'espère, égayera votre journée !",
                   image_url:
                     "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
