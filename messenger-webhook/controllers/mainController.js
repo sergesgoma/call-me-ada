@@ -107,7 +107,11 @@ const mainController = {
         response = {
           text: "Je ne sais pas traiter ce type de demande",
         };
-      } else {
+      } else if (
+        received_message.text != "Comment vas-tu ?" ||
+        received_message.text != "Je vais bien, merci" ||
+        received_message.text != "Non, ça ne va pas"
+      ) {
         // Create the payload that send back the received message
         response = {
           text: `${received_message.text}`,
