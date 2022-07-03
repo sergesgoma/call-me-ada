@@ -63,6 +63,7 @@ const mainController = {
 
       // Handle the different messages received if they're texts
       switch (received_message.text) {
+        // if the message sent by the user is "comment vas-tu", the bot answers and offers two quick replies
         case "Comment vas-tu ?": {
           response = {
             text: "Très bien et vous ?",
@@ -81,10 +82,12 @@ const mainController = {
           };
           break;
         }
+        // if the user answers "yes", the bot sends back a message for more interactivity
         case "Je vais bien, merci": {
           response = { text: "Génial, je suis heureux de le savoir ! 😀" };
           break;
         }
+        // if the user answers "no", the bot sends back a message for more interactivity along with a cute gif of a cat
         case "Non, ça ne va pas": {
           response = {
             attachment: {
@@ -103,6 +106,7 @@ const mainController = {
           };
           break;
         }
+        // if the bot receives any other message, the bot sends back the message received
         default: {
           response = {
             text: `${received_message.text}`,
@@ -110,8 +114,8 @@ const mainController = {
         }
       }
 
+      // if the received messsage contains an image, the bot sends back an error message
       if (received_message.attachments) {
-        // if the received messsage contains an image, the bot sends back an error message
         response = {
           text: "Je ne sais pas traiter ce type de demande",
         };
