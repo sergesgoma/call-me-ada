@@ -61,9 +61,9 @@ const mainController = {
     function handleMessage(sender_psid, received_message) {
       let response;
 
-      // If the received message is "comment vas-tu ?"
+      // Handle the different messages received if they're texts
       switch (received_message.text) {
-        case "Comment vas-tu ?":
+        case "Comment vas-tu ?": {
           response = {
             text: "Très bien et vous ?",
             quick_replies: [
@@ -80,10 +80,12 @@ const mainController = {
             ],
           };
           break;
-        case "Je vais bien, merci":
+        }
+        case "Je vais bien, merci": {
           response = { text: "Génial, je suis heureux de le savoir ! 😀" };
           break;
-        case "Non, ça ne va pas":
+        }
+        case "Non, ça ne va pas": {
           response = {
             attachment: {
               type: "template",
@@ -100,65 +102,20 @@ const mainController = {
             },
           };
           break;
-        case `${received_message.attachments}`:
-          response = {
-            text: "Je ne sais pas traiter ce type de demande",
-          };
-          break;
-        default:
+        }
+        default: {
           response = {
             text: `${received_message.text}`,
           };
+        }
       }
 
-        // }
-        // if (received_message.text == "Comment vas-tu ?") {
-        //   response = {
-        //     text: "Très bien et vous ?",
-        //     quick_replies: [
-        //       {
-        //         content_type: "text",
-        //         title: "Je vais bien, merci",
-        //         payload: "yes",
-        //       },
-        //       {
-        //         content_type: "text",
-        //         title: "Non, ça ne va pas",
-        //         payload: "no",
-        //       },
-        //     ],
-        //   };
-        // } else if (received_message.text == "Je vais bien, merci") {
-        //   // to handle the answer to the "très bien et vous ?" response of the bot if the answer of the user is "yes"
-        //   response = { text: "Génial, je suis heureux de le savoir ! 😀" };
-        // } else if (received_message.text == "Non, ça ne va pas") {
-        //   // to handle the answer to the "très bien et vous ?" response of the bot if the answer of the user is "no"
-        //   response = {
-        //     attachment: {
-        //       type: "template",
-        //       payload: {
-        //         template_type: "generic",
-        //         elements: [
-        //           {
-        //             title: "Oh non, j'en suis désolé...",
-        //             image_url:
-        //               "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
-        //           },
-        //         ],
-        //       },
-        //     },
-        //   };
-        // } else if (received_message.attachments) {
-        //   // if the received messsage contains an image, the bot sends back an error message
-        //   response = {
-        //     text: "Je ne sais pas traiter ce type de demande",
-        //   };
-        // } else {
-        //   // Create the payload that send back the received message
-        //   response = {
-        //     text: `${received_message.text}`,
-        //   };
-      // }
+      if (received_message.attachments) {
+        // if the received messsage contains an image, the bot sends back an error message
+        response = {
+          text: "Je ne sais pas traiter ce type de demande",
+        };
+      }
 
       // Sends the response message
       callSendAPI(sender_psid, response);
@@ -190,7 +147,6 @@ const mainController = {
         }
       );
     }
-
   },
 };
 
