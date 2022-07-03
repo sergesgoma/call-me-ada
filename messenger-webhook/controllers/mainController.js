@@ -100,7 +100,7 @@ const mainController = {
             },
           };
           break;
-        case received_message.attachments:
+        case `${received_message.attachments}`:
           response = {
             text: "Je ne sais pas traiter ce type de demande",
           };
