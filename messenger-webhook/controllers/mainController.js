@@ -64,30 +64,43 @@ const mainController = {
       // Check if the message contains text
       if (received_message.text == "Comment vas-tu ?") {
         response = {
-          attachment: {
-            type: "template",
-            payload: {
-              template_type: "generic",
-              elements: [
-                {
-                  title: "Très bien et vous ?",
-                  subtitle: "Appuyez sur un bouton pour répondre.",
-                  buttons: [
-                    {
-                      type: "postback",
-                      title: "Je vais bien, merci",
-                      payload: "yes",
-                    },
-                    {
-                      type: "postback",
-                      title: "Non, ça ne va pas",
-                      payload: "no",
-                    },
-                  ],
-                },
-              ],
+          text: "Très bien et vous ?",
+          quick_replies: [
+            {
+              content_type: "text",
+              title: "Je vais bien, merci",
+              payload: "yes",
             },
-          },
+            {
+              content_type: "text",
+              title: "Non, ça ne va pas",
+              payload: "no",
+            },
+          ],
+          // attachment: {
+          //   type: "template",
+          //   payload: {
+          //     template_type: "generic",
+          //     elements: [
+          //       {
+          //         title: "Très bien et vous ?",
+          //         subtitle: "Appuyez sur un bouton pour répondre.",
+          //         buttons: [
+          //           {
+          //             type: "postback",
+          //             title: "Je vais bien, merci",
+          //             payload: "yes",
+          //           },
+          //           {
+          //             type: "postback",
+          //             title: "Non, ça ne va pas",
+          //             payload: "no",
+          //           },
+          //         ],
+          //       },
+          //     ],
+          //   },
+          // },
         };
       } else if (received_message.attachments) {
         // if the received messsage contains an image, the bot sends back an error message
