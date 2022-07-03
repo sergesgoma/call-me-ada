@@ -157,8 +157,6 @@ const mainController = {
               ],
             },
           },
-          // response = {
-          //   text: "Oh non, j'en suis désolé... Voici un meme qui, j'espère, égayera votre journée !"
         };
       }
       // Send the message to acknowledge the postback
