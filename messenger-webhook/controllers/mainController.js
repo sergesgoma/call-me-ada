@@ -102,15 +102,30 @@ const mainController = {
           //   },
           // },
         };
+      } else if (received_message.text == "Je vais bien, merci") {
+        response = { text: "Génial, je suis heureux de le savoir ! 😀" };
+      } else if (received_message.text == "Non, ça ne va pas") {
+         response = {
+           attachment: {
+             type: "template",
+             payload: {
+               template_type: "generic",
+               elements: [
+                 {
+                   title: "Oh non, j'en suis désolé...",
+                   image_url:
+                     "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
+                 },
+               ],
+             },
+           },
+         };
       } else if (received_message.attachments) {
         // if the received messsage contains an image, the bot sends back an error message
         response = {
           text: "Je ne sais pas traiter ce type de demande",
         };
-      } else if (
-        received_message.text != "Comment vas-tu ?" ||
-        !quick_replies
-      ) {
+      } else {
         // Create the payload that send back the received message
         response = {
           text: `${received_message.text}`,
@@ -148,35 +163,35 @@ const mainController = {
       );
     }
     // to handle the answer to the "très bien et vous ?" response of the bot
-    function handlePostback(sender_psid, received_postback) {
-      let response;
+    // function handlePostback(sender_psid, received_postback) {
+    //   let response;
 
-      // Get the payload for the postback
-      let payload = received_postback.payload;
+    //   // Get the payload for the postback
+    //   let payload = received_postback.payload;
 
-      // Set the response based on the postback payload
-      if (payload === "yes") {
-        response = { text: "Génial, je suis heureux de le savoir ! 😀" };
-      } else if (payload === "no") {
-        response = {
-          attachment: {
-            type: "template",
-            payload: {
-              template_type: "generic",
-              elements: [
-                {
-                  title: "Oh non, j'en suis désolé...",
-                  image_url:
-                    "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
-                },
-              ],
-            },
-          },
-        };
-      }
-      // Send the message to acknowledge the postback
-      callSendAPI(sender_psid, response);
-    }
+    //   // Set the response based on the postback payload
+    //   if (payload === "yes") {
+    //     response = { text: "Génial, je suis heureux de le savoir ! 😀" };
+    //   } else if (payload === "no") {
+    //     response = {
+    //       attachment: {
+    //         type: "template",
+    //         payload: {
+    //           template_type: "generic",
+    //           elements: [
+    //             {
+    //               title: "Oh non, j'en suis désolé...",
+    //               image_url:
+    //                 "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
+    //             },
+    //           ],
+    //         },
+    //       },
+    //     };
+    //   }
+    //   // Send the message to acknowledge the postback
+    //   callSendAPI(sender_psid, response);
+    // }
   },
 };
 
