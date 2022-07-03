@@ -90,6 +90,7 @@ const mainController = {
           },
         };
       } else if (received_message.attachments) {
+        // if the received messsage contains an image, the bot sends back an error message
         response = {
           text: "Je ne sais pas traiter ce type de demande",
         };
@@ -129,6 +130,25 @@ const mainController = {
           }
         }
       );
+    }
+    // to handle the answer to the "très bien et vous ?" response of the bot
+    function handlePostback(sender_psid, received_postback) {
+      let response;
+
+      // Get the payload for the postback
+      let payload = received_postback.payload;
+
+      // Set the response based on the postback payload
+      if (payload === "yes") {
+        response = { text: "Génial, je suis heureux de le savoir !" };
+      } else if (payload === "no") {
+        response = {
+          text: "Oh non, j'en suis désolé... Voici un meme qui, j'espère, égayera votre journée !",
+          image_url: "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
+        };
+      }
+      // Send the message to acknowledge the postback
+      callSendAPI(sender_psid, response);
     }
   },
 };
