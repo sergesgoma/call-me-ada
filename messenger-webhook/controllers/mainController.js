@@ -109,8 +109,7 @@ const mainController = {
         };
       } else if (
         received_message.text != "Comment vas-tu ?" ||
-        received_message.text != "Je vais bien, merci" ||
-        received_message.text != "Non, ça ne va pas"
+        !received_message.quick_replies
       ) {
         // Create the payload that send back the received message
         response = {
@@ -166,8 +165,7 @@ const mainController = {
               template_type: "generic",
               elements: [
                 {
-                  title:
-                    "Oh non, j'en suis désolé...",
+                  title: "Oh non, j'en suis désolé...",
                   image_url:
                     "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
                 },
