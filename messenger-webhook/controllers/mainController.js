@@ -62,10 +62,44 @@ const mainController = {
       let response;
 
       // Check if the message contains text
-      if (received_message.text) {
-        // Create the payload for a basic text message
+      if (received_message.text == "Comment vas-tu ?") {
         response = {
-          text: `You sent the message: "${received_message.text}". Now send me an image!`,
+          attachment: {
+            type: "template",
+            payload: {
+              template_type: "generic",
+              elements: [
+                {
+                  title: "Très bien et vous ?",
+                  subtitle: "Appuyez sur un bouton pour répondre.",
+                  buttons: [
+                    {
+                      type: "postback",
+                      title: "Je vais bien, merci",
+                      payload: "yes",
+                    },
+                    {
+                      type: "postback",
+                      title: "Non, ça ne va pas",
+                      payload: "no",
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        };
+      } else if (received_message.text != "Comment vas-tu ?") {
+        // Create the payload that send back the received message
+        response = {
+          text: `${received_message.text}`,
+        };
+      } else if (received_message.attachments) {
+        // Gets the URL of the message attachment
+        let attachment_url = received_message.attachments[0].payload.url;
+        // if the received message has attechments, then send an error message
+        response = {
+          text: `Je ne sais pas traiter ce type de demande`,
         };
       }
 
