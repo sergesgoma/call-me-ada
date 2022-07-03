@@ -97,7 +97,7 @@ const mainController = {
       } else if (received_message.attachments) {
         // if the received message has attechments, then send an error message
         response = {
-          text: `Je ne sais pas traiter ce type de demande`,
+          text: "Je ne sais pas traiter ce type de demande",
         };
       }
 
