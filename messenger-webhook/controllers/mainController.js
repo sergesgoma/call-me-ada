@@ -143,7 +143,22 @@ const mainController = {
         response = { text: "Génial, je suis heureux de le savoir !" };
       } else if (payload === "no") {
         response = {
-          text: "Oh non, j'en suis désolé... Voici un meme qui, j'espère, égayera votre journée !"
+          attachment: {
+            type: "template",
+            payload: {
+              template_type: "generic",
+              elements: [
+                {
+                  title:
+                    "Oh non, j'en suis désolé... Voici un meme qui, j'espère, égayera votre journée !",
+                  image_url:
+                    "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
+                },
+              ],
+            },
+          },
+          // response = {
+          //   text: "Oh non, j'en suis désolé... Voici un meme qui, j'espère, égayera votre journée !"
         };
       }
       // Send the message to acknowledge the postback
