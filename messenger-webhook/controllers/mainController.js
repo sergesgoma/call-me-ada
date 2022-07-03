@@ -96,8 +96,34 @@ const mainController = {
         };
       } else if (received_message.attachments) {
         // if the received message has attechments, then send an error message
+        // Get the URL of the message attachment
+        let attachment_url = received_message.attachments[0].payload.url;
         response = {
-          text: "Je ne sais pas traiter ce type de demande",
+          attachment: {
+            type: "template",
+            payload: {
+              template_type: "generic",
+              elements: [
+                {
+                  title: "Is this the right picture?",
+                  subtitle: "Tap a button to answer.",
+                  image_url: attachment_url,
+                  buttons: [
+                    {
+                      type: "postback",
+                      title: "Yes!",
+                      payload: "yes",
+                    },
+                    {
+                      type: "postback",
+                      title: "No!",
+                      payload: "no",
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         };
       }
 
