@@ -109,7 +109,7 @@ const mainController = {
         };
       } else if (
         received_message.text != "Comment vas-tu ?" ||
-        !received_message.quick_replies
+        !quick_replies
       ) {
         // Create the payload that send back the received message
         response = {
