@@ -149,8 +149,8 @@ const mainController = {
               template_type: "generic",
               elements: [
                 {
-                  subtitle:
-                    "Oh non, j'en suis désolé... Voici un meme qui, j'espère, égayera votre journée !",
+                  title:
+                    "Oh non, j'en suis désolé...",
                   image_url:
                     "https://media3.giphy.com/media/ftNHK91P3szl3tQr90/giphy-downsized-large.gif",
                 },
